@@ -19,6 +19,7 @@ public class AutonomousCommand extends CommandBase {
     private CANSparkMax rightMotor;
     private CANSparkMax leftFollower;
     private CANSparkMax rightFollower;
+    public Constants jaba = new Constants();
 
     
   
@@ -37,10 +38,10 @@ public class AutonomousCommand extends CommandBase {
         area = lime.getta().getDouble(0);  //returns how much the target is in the area
 
         //initialize motors
-        leftMotor = new CANSparkMax(Constants.dm_motorleftID, MotorType.kBrushless);
-        rightMotor = new CANSparkMax(Constants.dm_motorrightID, MotorType.kBrushless);
-        leftFollower = new CANSparkMax(Constants.dm_leftfollowerID, MotorType.kBrushless);
-        rightFollower = new CANSparkMax(Constants.dm_rightfollowerID, MotorType.kBrushless);
+        leftMotor = new CANSparkMax(0, MotorType.kBrushless);
+        rightMotor = new CANSparkMax(2, MotorType.kBrushless);
+        leftFollower = new CANSparkMax(1, MotorType.kBrushless);
+        rightFollower = new CANSparkMax(3, MotorType.kBrushless);
     }
   
     // Called every time the scheduler runs while the command is scheduled.
