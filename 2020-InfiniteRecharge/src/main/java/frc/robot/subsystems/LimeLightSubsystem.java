@@ -15,12 +15,14 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class LimeLightSubsystem extends SubsystemBase {
 
+    //values
     NetworkTable table;
     NetworkTableEntry tx; 
     NetworkTableEntry ty; 
     NetworkTableEntry ta;
 
   public LimeLightSubsystem() {
+    //initialize values
     table = NetworkTableInstance.getDefault().getTable("limelight");
     tx = table.getEntry("tx"); 
     ty = table.getEntry("ty"); 
@@ -28,6 +30,8 @@ public class LimeLightSubsystem extends SubsystemBase {
 
   }
 
+
+  //getter methods
   public NetworkTableEntry gettx(){
       return tx;
   }

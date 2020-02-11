@@ -37,7 +37,8 @@ public class AutonomousCommand extends CommandBase {
         aim = new AimCommand(lime, leftMotor, rightMotor, leftFollower, rightFollower);
     }
   
-    public void setmotors(Double power){
+    //set motors using this method inside only this class
+    private void setmotors(Double power){
       leftMotor.set(power);
       rightMotor.set(power);
       leftFollower.follow(leftMotor);
@@ -52,18 +53,18 @@ public class AutonomousCommand extends CommandBase {
         if(ta>.8)
           while(lime.getta().getDouble(0)>.7)
           {
-            setmotors(-0.2);
+            setmotors(-0.2);  //move back if too close
           }
-        setmotors(0.0);
-        aim.aime();
+        setmotors(0.0);   //stop when at right distance
+        aim.aime();   //calls aim method
       }
       else{
         while(lime.getta().getDouble(0)<.7)
           {
-            setmotors(0.2);
+            setmotors(0.2);   //moves forward if too far
           }
-        setmotors(0.0);
-        aim.aime();
+        setmotors(0.0);   //stop when at right distance
+        aim.aime();     //calls aim method
       }
         
     }
@@ -71,6 +72,7 @@ public class AutonomousCommand extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+      //stop motors
     setmotors(0.0);
     }
   

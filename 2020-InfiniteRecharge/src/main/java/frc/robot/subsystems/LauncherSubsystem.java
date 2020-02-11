@@ -16,11 +16,17 @@ public class LauncherSubsystem extends SubsystemBase
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    public void LauncherSubsystem()
+    //initialize
+    public LauncherSubsystem()
     {
       angle = new CANSparkMax(Constants.dm_motorleftID, MotorType.kBrushless);
       cannonwheel = new CANSparkMax(Constants.dm_motorrightID, MotorType.kBrushless);
       
+    }
+
+      //launch balls
+    public void launch(){
+
     }
 
 
