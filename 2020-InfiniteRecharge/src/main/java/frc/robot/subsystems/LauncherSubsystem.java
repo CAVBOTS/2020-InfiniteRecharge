@@ -18,10 +18,10 @@ public class LauncherSubsystem extends SubsystemBase
       // setDefaultCommand(new MySpecialCommand());
     }
 
-      private CANSparkMax leftMotor = new CANSparkMax(0, MotorType.kBrushless);
-      private CANSparkMax rightMotor = new CANSparkMax(2, MotorType.kBrushless);
+      private CANSparkMax leftMotor = new CANSparkMax(Constants.dm_motorleftID, MotorType.kBrushless);
+      private CANSparkMax rightMotor = new CANSparkMax(Constants.dm_motorrightID, MotorType.kBrushless);
   
-      private CANSparkMax leftMotorFollow = new CANSparkMax(1, MotorType.kBrushless);
-      private CANSparkMax rightMotorFollow = new CANSparkMax(3, MotorType.kBrushless);
+      private CANSparkMax leftMotorFollow = new CANSparkMax(Constants.dm_leftfollowerID, MotorType.kBrushless);
+      private CANSparkMax rightMotorFollow = new CANSparkMax(Constants.dm_rightfollowerID, MotorType.kBrushless);
 
 }
