@@ -39,9 +39,9 @@ public final class Constants {
     public static final int intakemotorID = 7;
     public static final int intakefollowerID = 8;
 
-    //Inside cannon motors
-    public static final int insidecannonID = 9;
-    public static final int InsidefollowerID = 10;
+    //Rack and pinion motors
+    public static final int rackone = 9;
+    public static final int racktwo = 10;
 
     //elevator motors
     public static final int e_leftmotorID = 11;

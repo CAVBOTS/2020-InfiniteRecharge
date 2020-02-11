@@ -37,37 +37,41 @@ public class AutonomousCommand extends CommandBase {
         aim = new AimCommand(lime, leftMotor, rightMotor, leftFollower, rightFollower);
     }
   
+    public void setmotors(Double power){
+      leftMotor.set(power);
+      rightMotor.set(power);
+      leftFollower.follow(leftMotor);
+      rightFollower.follow(rightMotor);
+    }
+
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-      if(lime.getta().getDouble(0)>.8){ //TODO determine area
-        leftMotor.set(0);
-        rightMotor.set(0);
-        leftFollower.follow(leftMotor);
-        rightFollower.follow(rightMotor);
+      Double ta = lime.getta().getDouble(0);
+      if(ta>.7){ //TODO determine area
+        if(ta>.8)
+          while(lime.getta().getDouble(0)>.7)
+          {
+            setmotors(-0.2);
+          }
+        setmotors(0.0);
         aim.aime();
       }
       else{
-        leftMotor.set(0.2);
-        rightMotor.set(0.2);
-        leftFollower.follow(leftMotor);
-        rightFollower.follow(rightMotor);
+        while(lime.getta().getDouble(0)<.7)
+          {
+            setmotors(0.2);
+          }
+        setmotors(0.0);
+        aim.aime();
       }
         
-    // leftMotor.set(0);
-    // rightMotor.set(0);
-    // leftFollower.follow(leftMotor);
-    // rightFollower.follow(rightMotor);
-      
     }
   
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-    leftMotor.set(0);
-    rightMotor.set(0);
-    leftFollower.follow(leftMotor);
-    rightFollower.follow(rightMotor);
+    setmotors(0.0);
     }
   
     // Returns true when the command should end.
