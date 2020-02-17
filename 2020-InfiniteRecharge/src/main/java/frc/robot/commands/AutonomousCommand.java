@@ -6,10 +6,11 @@ import frc.robot.subsystems.LimeLightSubsystem;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.commands.AimCommand;
+import frc.robot.subsystems.LauncherSubsystem;
 
 public class AutonomousCommand extends CommandBase {
     /**
-     * Creates a new LimeLight.
+     * .
      */
     private LimeLightSubsystem lime;
     private CANSparkMax leftMotor;
@@ -17,11 +18,14 @@ public class AutonomousCommand extends CommandBase {
     private CANSparkMax leftFollower;
     private CANSparkMax rightFollower;
     private AimCommand aim;// = new AimCommand(null, leftFollower, leftFollower, leftFollower, leftFollower);
+    private LauncherCommand launch;
 
     
   
     public AutonomousCommand() {
-        
+        addRequirements(LimeLightSubsystem);
+        addRequirements(LauncherCommand);
+        addRequirements(AimCommand);
       // Use addRequirements() here to declare subsystem dependencies.
     }
   
@@ -35,6 +39,7 @@ public class AutonomousCommand extends CommandBase {
         leftFollower = new CANSparkMax(Constants.dm_leftfollowerID, MotorType.kBrushless);
         rightFollower = new CANSparkMax(Constants.dm_rightfollowerID, MotorType.kBrushless);
         aim = new AimCommand(lime, leftMotor, rightMotor, leftFollower, rightFollower);
+        lime = new LimeLightSubsystem();
     }
   
     //set motors using this method inside only this class
@@ -48,6 +53,12 @@ public class AutonomousCommand extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+      inposition();
+      launch.execute();
+      }
+
+      //used to put robot into position in front of goal
+      public void inposition(){
       Double ta = lime.getta().getDouble(0);
       if(ta>.7){ //TODO determine area
         if(ta>.8)
@@ -56,7 +67,8 @@ public class AutonomousCommand extends CommandBase {
             setmotors(-0.2);  //move back if too close
           }
         setmotors(0.0);   //stop when at right distance
-        aim.aime();   //calls aim method
+        if(aim.isinposition())
+          aim.aime();   //calls aim method
       }
       else{
         while(lime.getta().getDouble(0)<.7)
@@ -64,7 +76,8 @@ public class AutonomousCommand extends CommandBase {
             setmotors(0.2);   //moves forward if too far
           }
         setmotors(0.0);   //stop when at right distance
-        aim.aime();     //calls aim method
+        if(aim.isinposition())
+          aim.aime();     //calls aim method
       }
         
     }

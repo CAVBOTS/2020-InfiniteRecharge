@@ -22,33 +22,37 @@ package frc.robot;
  */
 public final class Constants {
     //initialize CAN IDS
+    public static final int PDP = 0;
+
     //drivetrain motors
-    public static final int dm_motorleftID = 0;
-    public static final int dm_leftfollowerID = 1;
-    public static final int dm_motorrightID = 2;
-    public static final int dm_rightfollowerID = 3;
+    public static final int dm_motorleftID = 1;
+    public static final int dm_leftfollowerID = 2;
+    public static final int dm_motorrightID = 3;
+    public static final int dm_rightfollowerID = 4;
 
     //Launcher motors
-    public static final int rotorymotorID = 4;
-    public static final int wheelmotorID = 5;
+    public static final int rotorymotorID = 5;
+    public static final int wheelmotorID = 6;
     
     //Colorwheel
-    public static final int colormotorID = 6;
+    public static final int colormotorID = 7;
     
     //intake motors
-    public static final int intakemotorID = 7;
-    public static final int intakefollowerID = 8;
+    public static final int intakemotorID = 8;
+    public static final int compressorID = 1;
+    public static final int firstID = 2;
+    public static final int secondID = 3;
+    public static final int limidID = 4;
 
     //Rack and pinion motors
     public static final int rackone = 9;
     public static final int racktwo = 10;
 
     //elevator motors
-    public static final int e_leftmotorID = 11;
-    public static final int e_rightmotorID = 12;
+    public static final int e_motorID = 11;
 
     //hanging motors
-    public static final int hangmotorID = 13;
-    public static final int hangfollowerID = 14;
+    public static final int hangmotorID = 12;
+    public static final int hangfollowerID = 13;
 
 }

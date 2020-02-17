@@ -1,4 +1,5 @@
 package frc.robot.commands;
+//putting robot into position
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.smartdashboard.*;
@@ -15,6 +16,7 @@ public class AimCommand extends CommandBase {
     private CANSparkMax rightMotor;
     private CANSparkMax leftFollower;
     private CANSparkMax rightFollower;
+    private boolean inposition = false;
 
     
     //initialize motors
@@ -32,14 +34,14 @@ public class AimCommand extends CommandBase {
     @Override
     public void initialize() {
         //initialize limelight
+        lime = new LimeLightSubsystem();
         xoffset = lime.gettx().getDouble(0); // returns horizantal degress
         yoffset = lime.getty().getDouble(0); // returns vertical off set of degrees from origin
         area = lime.getta().getDouble(0);  //returns how much the target is in the area
 
     }
   
-    // Called every time the scheduler runs while the command is scheduled.
-   // @Override
+  
     public void aime() {
     while(xoffset>-.5 && xoffset<.5 )
     {
@@ -64,7 +66,12 @@ public class AimCommand extends CommandBase {
     xoffset = lime.gettx().getDouble(0); // returns horizantal degress
     yoffset = lime.getty().getDouble(0); // returns vertical off set of degrees from origin
     area = lime.getta().getDouble(0);  //returns how much the target is in the area
+    inposition = true;
       
+    }
+
+    public boolean isinposition(){
+      return inposition;
     }
   
     // Called once the command ends or is interrupted.
