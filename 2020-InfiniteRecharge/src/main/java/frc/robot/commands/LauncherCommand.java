@@ -42,7 +42,9 @@ public class LauncherCommand extends CommandBase {
     while(launch.getcount()-intake.getcount()!=0){
         launch.autoset();
         launch.launch();
-        launch.lift(1); //TODO set numbers and intake
+        launch.lift(1); //TODO set numbers and intake and delay
+        wait(1);
+        launch.lift(0);
     }
     launch.stop();
   }
