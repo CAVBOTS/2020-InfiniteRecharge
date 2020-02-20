@@ -49,7 +49,7 @@ public final class Constants {
     public static final int racktwo = 10;
 
     //elevator motors
-    public static final int e_motorID = 11;
+    public static final int conveyer = 11;
 
     //hanging motors
     public static final int hangmotorID = 12;

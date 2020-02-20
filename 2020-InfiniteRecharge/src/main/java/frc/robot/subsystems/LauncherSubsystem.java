@@ -30,7 +30,7 @@ public class LauncherSubsystem extends SubsystemBase
       //initialize motors
       angle = new CANSparkMax(Constants.rotorymotorID, MotorType.kBrushless);
       cannonwheel = new CANSparkMax(Constants.wheelmotorID, MotorType.kBrushless);
-      elevator = new CANSparkMax(Constants.e_motorID, MotorType.kBrushless);
+      elevator = new CANSparkMax(Constants.conveyer, MotorType.kBrushless);
     
     }
 
