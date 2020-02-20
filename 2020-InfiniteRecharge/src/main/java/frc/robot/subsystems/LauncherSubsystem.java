@@ -50,7 +50,7 @@ public class LauncherSubsystem extends SubsystemBase
 
     //launch balls
     public void launch(){
-       //TODO input scheduler stuff or delay
+       //TODO Configure delay
         cannonwheel.set(1);
         time.delay(.1);
         cannonwheel.set(0);
@@ -63,7 +63,7 @@ public class LauncherSubsystem extends SubsystemBase
       // elevator.set(0);
     }
 
-    //returns the count on the limit switch
+    //returns the count on the limit switch how many balls go out the shoot
     public int getcount(){
       return count;
     }
@@ -71,11 +71,11 @@ public class LauncherSubsystem extends SubsystemBase
     @Override
   public void periodic() {
     if(limit.get())
-      count++;
+      count++; //gets count for how many balls go out the shoot
     
   }
 
-  public void stop(){
+  public void stop(){ //stop all motors
     cannonwheel.set(0);
     lift(0);
     angle.set(0);

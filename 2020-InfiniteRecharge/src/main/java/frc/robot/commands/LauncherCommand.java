@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.revrobotics.CANSparkMax;
 import frc.robot.subsystems.LauncherSubsystem;
 import frc.robot.subsystems.IntakeSub;
+import edu.wpi.first.wpilibj.Timer;
 
 public class LauncherCommand extends CommandBase {
   /**
@@ -20,10 +21,12 @@ public class LauncherCommand extends CommandBase {
   private LauncherSubsystem launch;
   private IntakeSub intake;
   private int count;
+  private Timer time = new Timer();
 
 
   public LauncherCommand() {
-      
+      addRequirements(LauncherSubsystem);
+      addRequirements(IntakeSub);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -39,11 +42,12 @@ public class LauncherCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    while(launch.getcount()-intake.getcount()!=0){
+    //if there are balls in the robot, then launch and lift up more balls to the cannon
+    while(intake.getcount()-launch.getcount()!=0){ 
         launch.autoset();
         launch.launch();
         launch.lift(1); //TODO set numbers and intake and delay
-        wait(1);
+        time.delay(0.1);
         launch.lift(0);
     }
     launch.stop();
@@ -51,7 +55,7 @@ public class LauncherCommand extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
+  public void end(boolean interrupted) { //stop motors
       launch.stop();
   }
 

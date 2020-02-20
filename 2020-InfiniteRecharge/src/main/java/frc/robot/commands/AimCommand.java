@@ -43,14 +43,33 @@ public class AimCommand extends CommandBase {
   
   
     public void aime() {
-    while(xoffset>-.5 && xoffset<.5 )
+    while(xoffset>-.5 && xoffset<.5 && area>0.8 && area<0.6)
     {
-        if(xoffset>0.5) //moving it left
-            leftMotor.set(.2);//TODO Set numbers
-        if(xoffset<0.5)  //moving it right
+        //moes it backward if too close
+        if(area>.8) //TODO Calibrate area
+        {
+          leftMotor.set(-.2);
+          rightMotor.set(-.2);
+          leftFollower.follow(leftMotor);
+          rightMotor.follow(rightMotor);
+        }
+        else if(area<0.6)//move forward if too back
+        {
+          leftMotor.set(0.2);
+          rightMotor.set(0.2);
+          leftFollower.follow(leftMotor);
+          rightMotor.follow(rightMotor);
+        }
+        else if(xoffset>0.5) //moving it left if camera to the right
+            leftMotor.set(.2);//TODO Calibrate numbers
+        else if(xoffset<0.5)  //moving it right if camera to the left
             rightMotor.set(.2);
         leftFollower.follow(leftMotor);
         rightFollower.follow(rightMotor);
+
+        //recalculate target positioning
+        xoffset = lime.gettx().getDouble(0); // returns horizantal degress
+        area = lime.getta().getDouble(0);  //returns how much the target is in the area
     }
     leftMotor.set(0);  //stop motors when done aiming
     rightMotor.set(0);
@@ -62,10 +81,7 @@ public class AimCommand extends CommandBase {
     SmartDashboard.putNumber("y degrees off target: ", yoffset);
     SmartDashboard.putNumber("Target Area: ", area);
 
-    //recalculate target positioning
-    xoffset = lime.gettx().getDouble(0); // returns horizantal degress
-    yoffset = lime.getty().getDouble(0); // returns vertical off set of degrees from origin
-    area = lime.getta().getDouble(0);  //returns how much the target is in the area
+    
     inposition = true;
       
     }
