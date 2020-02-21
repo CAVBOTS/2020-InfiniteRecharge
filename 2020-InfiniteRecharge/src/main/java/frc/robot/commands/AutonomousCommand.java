@@ -58,7 +58,7 @@ public class AutonomousCommand extends CommandBase {
       }
 
       //used to put robot into position in front of goal
-      public void inposition(){
+    public void inposition(){
       Double ta = lime.getta().getDouble(0);
       if(ta>.7){ //TODO determine area
         if(ta>.8)

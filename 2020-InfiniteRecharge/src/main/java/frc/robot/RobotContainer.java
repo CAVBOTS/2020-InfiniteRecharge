@@ -11,6 +11,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.DriveCommand;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.controller;
+import edu.wpi.first.wpilibj.buttons;
+import edu.wpi.first.wpilibj2.command.button;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -23,6 +27,7 @@ public class RobotContainer {
 
   //drive
   private final DriveCommand commanddrive = new DriveCommand();
+  private final AutonomousCommand autodrive = new AutonomousCommand();
 
 
   
@@ -44,6 +49,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+
     
   }
 
@@ -55,6 +61,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return commanddrive;
+    return autodrive;
   }
 }
